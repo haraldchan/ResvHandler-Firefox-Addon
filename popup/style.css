@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* list-style-type: none; */
+}
+
+html,
+body {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  width: 400px;
+  height: 550px;
+  background-color: #222;
+}
+
+.container {
+  padding: 20px;
+  color: aliceblue;
+}
+
+.container p {
+  margin: 10px 0;
+}
+
+.title {
+  margin: 10px auto 20px;
+}
+
+
+.border-gradient {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 10px;
+}
+.border-gradient-green {
+  border-image-source: linear-gradient(to left, #e66000, #ff9500);
+}
+
+.get-info {
+  margin: 15px 0 25px 0;
+  width: 100px;
+  height: 30px;
+  border-radius: 3px;
+  border: 0;
+}
+
+.readme {
+  margin: 20px 0;
+}
+
+.readme ol {
+  margin: 10px 0 0 20px;
+}
+
+.readme li {
+  margin: 10px;
+}
+
+.supt-status {
+  margin-left: 10px;
+  font-weight: bolder;
+}
+
+.kingsley-info {
+  margin-top: 30px;
+}
+
+.success {
+  color:#14A44D
+}
+
+.danger {
+  color:#DC4C64
+}
+
+.warning {
+  color: #E4A11B
+}
