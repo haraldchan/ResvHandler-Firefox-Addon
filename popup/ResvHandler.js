@@ -32,13 +32,13 @@ async function showSiteInformation() {
 			if (!url.toLowerCase().includes('print') && !url.includes('THotelOrderformShowDpAct') && !url.includes('readhtml')) {
 				getInfoBtn.disabled = true
 				suptStatus.className = 'supt-status warning'
-				suptStatus.innerHTML = '非打印订单界面'
+				suptStatus.innerText = '非打印订单界面'
 				return
 			}
 			if (agent.supt === '支持') {
 				getInfoBtn.disabled = false
 				suptStatus.className = 'supt-status success'
-				suptStatus.innerHTML = agent.supt
+				suptStatus.innerText = agent.supt
 				return
 			}
 			return
@@ -46,7 +46,7 @@ async function showSiteInformation() {
 			getInfoBtn.disabled = true
 			curSource.innerText = '非可用网站'
 			suptStatus.className = 'supt-status danger'
-			suptStatus.innerHTML = '不支持'
+			suptStatus.innerText = '不支持'
 		}
 	}
 }
