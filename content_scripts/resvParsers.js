@@ -52,7 +52,15 @@ function Kingsley() {
 	const infoObj = { header: 'RH', agent: 'kingsley' }
 	infoObj.orderId = document.querySelectorAll('.STYLE43')[3].nextSibling.textContent.trim()
 	const guestNames = document.querySelectorAll('.square42')[1].innerText.trim()
-	infoObj.guestNames = guestNames.split('，')
+	if (guestNames.includes('、')) {
+		infoObj.guestNames = guestNames.split('、')
+	} else if (guestNames.includes(',')) {
+		infoObj.guestNames = guestNames.split(',')
+	} else if (guestNames.includes('，')) {
+		infoObj.guestNames = guestNames.split('，')
+	} else {
+		infoObj.guestNames = guestNames
+	}
 	infoObj.roomType = document.querySelectorAll('.square426')[1].innerText.split('(')[0].trim()
 	const orderIdText = document.querySelectorAll('.square426')[1].innerText
 	const bbfCount = orderIdText.includes('不含早') ? 0 : orderIdText.includes('单早') ? 1 : 2
@@ -185,7 +193,7 @@ function AgodaMail() {
 	infoObj.bbf = Array(dateDiffInDays(infoObj.ciDate, infoObj.coDate)).fill(bbfCount)
 
 	const roomRates = Array.from(document.querySelectorAll('.rates')).slice(0, -5)
-	infoObj.roomRates = roomRates.map((td) => parseFloat(td.innerText.replace(',', '').split(' ')[1]))
+	infoObj.roomRates = roomRates.map((td) => parseFloat(td.innerText.replace(',', '').split(' ')[1]).toFixed(2))
 
 	infoObj.remarks = document.getElementById('lblSupplierNoteData')?.innerText
 	infoObj.contacts = {
