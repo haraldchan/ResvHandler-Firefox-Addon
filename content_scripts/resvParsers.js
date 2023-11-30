@@ -59,7 +59,7 @@ function Kingsley() {
 	} else if (guestNames.includes('，')) {
 		infoObj.guestNames = guestNames.split('，')
 	} else {
-		infoObj.guestNames = guestNames
+		infoObj.guestNames = [guestNames]
 	}
 	infoObj.roomType = document.querySelectorAll('.square426')[1].innerText.split('(')[0].trim()
 	const orderIdText = document.querySelectorAll('.square426')[1].innerText
