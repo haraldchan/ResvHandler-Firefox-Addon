@@ -20,6 +20,7 @@ async function getResvInfo() {
 		msg: 'Info Accquiring...',
 		url: tabs[0].url,
 	})
+		alert('已复制订单信息。')
 }
 
 async function showSiteInformation() {
