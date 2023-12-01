@@ -147,7 +147,7 @@ function Ctrip() {
 	infoObj.guestNames = tableOrderList[2].firstChild.textContent.trim().split(',')
 	infoObj.ciDate = tableOrderList[3].firstChild.textContent.split('-')[0].trim().replaceAll('/', '')
 	infoObj.coDate = tableOrderList[3].firstChild.textContent.split('-')[1].trim().replaceAll('/', '')
-	const roomCharIndex = tableOrderList[4].firstChild.textContent.includes('房')
+	const roomCharIndex = tableOrderList[4].firstChild.textContent.indexOf('房')
 	infoObj.roomType = tableOrderList[4].firstChild.textContent.slice(0, roomCharIndex + 1)
 	infoObj.roomQty = Number(tableOrderList[4].nextElementSibling.innerText)
 
