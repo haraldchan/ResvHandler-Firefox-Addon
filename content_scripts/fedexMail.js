@@ -19,7 +19,7 @@ function FedexMail() {
 
 	infoObj.stayHours = getStayHours(infoObj.ciDate, infoObj.ETA, infoObj.coDate, infoObj.ETD)
 	infoObj.daysActual = getDaysActual(infoObj.stayHours)
-	infoObj.roomRate = Array(infoObj.daysActual).fill(roomRatePerNight)
+	infoObj.roomRates = Array(infoObj.daysActual).fill(roomRatePerNight)
 
 	const crewInfo = document.querySelector('div .content')
 	infoObj.crewNames = getCrewNames(crewInfo.textContent)
