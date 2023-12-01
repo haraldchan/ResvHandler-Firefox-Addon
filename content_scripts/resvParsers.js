@@ -112,7 +112,7 @@ function Meituan() {
 	const roomRates = []
 	const roomRateNodeList = document.querySelectorAll('.detail-info-wrap .text-danger')
 	for (const rate of roomRateNodeList) {
-		roomRates.push(Number(rate.innerText.slice(1)))
+		roomRates.push(Number(rate.innerText.slice(1)).toFixed(2))
 	}
 	roomRates.shift()
 	infoObj.roomRates = roomRates
