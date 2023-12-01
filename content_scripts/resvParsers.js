@@ -61,7 +61,13 @@ function Kingsley() {
 	} else {
 		infoObj.guestNames = [guestNames]
 	}
-	infoObj.roomType = document.querySelectorAll('.square426')[1].innerText.split('(')[0].trim()
+	const roomTypeText = document.querySelectorAll('.square426')[1].innerText
+	if(roomTypeText.includes("(")){
+		infoObj.roomType = roomTypeText.split('(')[0].trim()
+	} else if (roomTypeText.includes("（")) {
+		infoObj.roomType = roomTypeText.split('（')[0].trim()
+	}
+	// infoObj.roomType = document.querySelectorAll('.square426')[1].innerText.split('(')[0].trim()
 	const orderIdText = document.querySelectorAll('.square426')[1].innerText
 	const bbfCount = orderIdText.includes('不含早') ? 0 : orderIdText.includes('单早') ? 1 : 2
 
