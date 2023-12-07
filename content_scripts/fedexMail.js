@@ -57,7 +57,7 @@ function parseDateString(input) {
 		formattedTime = time
 	} else {
 		const [h, m] = time.split(':')
-		const newH = h + 12 === 24 ? '00' : Number(h) + 12
+		const newH = h + 12 === 24 ? '12' : Number(h) + 12
 		formattedTime = newH + ':' + m
 	}
 
