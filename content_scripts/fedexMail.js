@@ -53,11 +53,14 @@ function parseDateString(input) {
 	const formattedDate = `${year}${month}${day}`
 
 	let formattedTime = ''
-	if (meridian === 'AM') {
+	const [h, m] = time.split(':')
+	if (h === '12') {
+		const newH = meridian === 'AM' ? '00' : '12'
+		formattedTime = newH + ':' + m
+	} else if (meridian === 'AM') {
 		formattedTime = time
 	} else {
-		const [h, m] = time.split(':')
-		const newH = h + 12 === 24 ? '12' : Number(h) + 12
+		const newH = Number(h) + 12
 		formattedTime = newH + ':' + m
 	}
 
