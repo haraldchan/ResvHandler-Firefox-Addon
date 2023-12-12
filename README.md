@@ -5,7 +5,7 @@
   <h2 align="center" style="font-weight: 600">Reservation Handler</h2>
   
   <p align="center">
-    📜 订单信息，一键获取 ✔️
+    📑 订单信息，一键获取 ✔️
     <br />
     <a href="https://addons.mozilla.org/zh-CN/firefox/addon/reservation-handler/" target="_blank"><strong> 访问Firefox Add-Ons </strong></a>
     <br />
@@ -15,7 +15,7 @@
 
 欢迎使用 Reservation Handler！该插件可以在酒店订单打印界面帮助你获取关键信息，如客人姓名、订房数量、房价等，并将这些信息写出到剪贴板，以便与RPA软件（如AutoHotkey、UiBot）进行配套使用，实现本地自动化。请按照以下说明正确使用该插件。
 
-## 支持的代理商列表
+## 🏢 支持的代理商列表
 
 Reservation Handler 目前支持以下酒店代理商：
 
@@ -31,7 +31,7 @@ Reservation Handler 目前支持以下酒店代理商：
 * **FedEx Hotel Reservation邮件**
 请确保你的订单来自以上列出的代理商之一，以确保插件正常工作。
 
-## 🏢 获取订单信息
+## 📄 获取订单信息
 
 1. **选择订单页面**
     1. 导航到你的酒店订单页面。
