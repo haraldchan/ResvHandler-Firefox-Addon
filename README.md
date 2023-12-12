@@ -7,7 +7,7 @@
   <p align="center">
     📜 订单信息，一键获取 ✔️
     <br />
-    <a href="https://addons.mozilla.org/zh-CN/firefox/addon/reservation-handler/" target="blank"><strong> 访问Firefox Add-Ons </strong></a>
+    <a href="https://addons.mozilla.org/zh-CN/firefox/addon/reservation-handler/" target="_blank"><strong> 访问Firefox Add-Ons </strong></a>
     <br />
     <br />
   </p>
