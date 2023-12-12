@@ -197,7 +197,7 @@ function Fliggy() {
 	infoObj.invoiceMemo = Array.from(document.querySelectorAll('.ant-descriptions-item-content span')).at(-2).innerText
 
 	const paymentType = Array.from(document.querySelectorAll('.ant-descriptions-item-content span')).at(-1).innerText
-	infoObj.paymentType = paymentType.includes('信用住') ? '信用住' : '预付'
+	infoObj.payment = paymentType.includes('信用住') ? '信用住' : '预付'
 
 	return JSON.stringify(infoObj)
 }
