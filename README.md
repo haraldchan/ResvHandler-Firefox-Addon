@@ -5,7 +5,7 @@
   <h2 align="center" style="font-weight: 600">Reservation Handler</h2>
   
   <p align="center">
-    订单信息获取扩展
+    📜 订单信息，一键获取 ✔️
     <br />
     <a href="https://addons.mozilla.org/zh-CN/firefox/addon/reservation-handler/" target="blank"><strong> 访问Firefox Add-Ons </strong></a>
     <br />
