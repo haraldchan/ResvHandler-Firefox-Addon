@@ -3,6 +3,7 @@ const agentSources = [
 	{ agentName: 'kingsley', domain: 'www.ql-gz.com/ebooking' },
 	{ agentName: 'ctrip', domain: 'ebooking.ctrip.com' },
 	{ agentName: 'meituan', domain: 'eb.meituan.com' },
+	{ agentName: 'fliggy', domain: 'hotel.fliggy.com' },
 	// { agentName: '微信商城', domain: 'ebooking.jladmin.cn' },
 	{ agentName: 'email', domain: 'mail.qiye.163.com' },
 ]
@@ -28,6 +29,9 @@ browser.runtime.onMessage.addListener((req, sender, sendResponse) => {
 			break
 		case 'ctrip':
 			browser.runtime.sendMessage({ info: Ctrip() })
+			break
+		case 'fliggy':
+			browser.runtime.sendMessage({ info: Fliggy() })
 			break
 		case 'email':
 			emailBookings()

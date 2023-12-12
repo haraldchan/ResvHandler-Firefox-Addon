@@ -62,9 +62,9 @@ function Kingsley() {
 		infoObj.guestNames = [guestNames]
 	}
 	const roomTypeText = document.querySelectorAll('.square426')[1].innerText
-	if(roomTypeText.includes("(")){
+	if (roomTypeText.includes('(')) {
 		infoObj.roomType = roomTypeText.split('(')[0].trim()
-	} else if (roomTypeText.includes("（")) {
+	} else if (roomTypeText.includes('（')) {
 		infoObj.roomType = roomTypeText.split('（')[0].trim()
 	}
 	// infoObj.roomType = document.querySelectorAll('.square426')[1].innerText.split('(')[0].trim()
@@ -164,6 +164,44 @@ function Ctrip() {
 		infoObj.payment = '预付'
 	}
 	infoObj.remarks = document.getElementById('lblRemark').innerText.replaceAll('\n', '。')
+
+	return JSON.stringify(infoObj)
+}
+
+function Fliggy() {
+	const infoObj = { header: 'RH', agent: 'fliggy' }
+	infoObj.orderId = Number(document.querySelector('.ant-space-item').innerText)
+	infoObj.guestNames = document.querySelector('.name___1TOpi').innerText.split(' ')
+
+	const productInfo = document.querySelector('.line___3G3zu')
+	infoObj.roomType = productInfo.innerText.split('-')[0]
+	infoObj.roomQty = Number(productInfo.innerText.split('\n')[1].split('间')[0])
+	if (productInfo.innerText.includes('+')) {
+		const benefits = productInfo.innerText
+			.split(' ')[0]
+			.split('+')
+			.filter((item) => !item.includes('早') && !item.includes('房'))
+		infoObj.remarks = benefits.join(', ')
+	} else {
+		infoObj.remarks = ''
+	}
+
+	const stay = document.querySelectorAll('.line___3G3zu')[1].innerText.split('\n')[0].split('-')
+	infoObj.ciDate = stay[0].replaceAll('/', '')
+	infoObj.coDate = stay[1].replaceAll('/', '')
+
+	infoObj.roomRates = Array.from(document.querySelectorAll('.red')).map((item) => Number(item.innerText.split(' ')[1]))
+	const bbf = Array.from(document.querySelectorAll('.tableCellLabel___2hgxe')).map((item) => item.nextElementSibling.innerText)
+	infoObj.bbf = bbf.map((item) => (item === '无早' ? 0 : item === '含单早' ? 1 : 2))
+
+	const invoiceRemarks = Array.from(document.querySelectorAll('.ant-descriptions-item-content span')).at(-2).innerText
+	console.log(invoiceRemarks)
+	const issueByHotel = invoiceRemarks.includes('由酒店开具') ? true : false
+	const issueAmount = Number(invoiceRemarks.split(' ')[1])
+	infoObj.invoiceDetails = { issueByHotel, issueAmount }
+
+	const paymentType = Array.from(document.querySelectorAll('.ant-descriptions-item-content span')).at(-1).innerText
+	infoObj.paymentType = paymentType.includes('信用住') ? '信用住' : '预付'
 
 	return JSON.stringify(infoObj)
 }

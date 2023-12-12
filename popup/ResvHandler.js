@@ -3,7 +3,7 @@ const agents = [
 	{ agentName: '美团酒店商家', domain: 'eb.meituan.com/ebooking', supt: '支持' },
 	{ agentName: '广州奇利', domain: 'www.ql-gz.com/ebooking', supt: '支持' },
 	{ agentName: '携程', domain: 'ebooking.ctrip.com', supt: '支持' },
-	{ agentName: '飞猪', domain: 'hotel.fliggy.com', supt: 'wip' },
+	{ agentName: '飞猪', domain: 'hotel.fliggy.com', supt: '支持' },
 	{ agentName: '网易邮箱', domain: 'mail.qiye.163.com', supt: '支持' },
 ]
 
