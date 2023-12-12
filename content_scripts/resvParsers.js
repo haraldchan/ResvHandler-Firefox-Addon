@@ -12,7 +12,7 @@ const infoObjFormat = [
 ]
 // query models
 function Jielv() {
-	const infoObj = { header: 'RH', agent: 'jielv' }
+	const infoObj = { identifier: 'ReservationHandler', agent: 'jielv' }
 	const tdclass = document.querySelectorAll('.tdclass')
 	infoObj.orderId = tdclass[0].nextElementSibling.innerText
 	infoObj.roomType = tdclass[4].nextElementSibling.innerText.split(' ')[0]
@@ -49,7 +49,7 @@ function Jielv() {
 }
 
 function Kingsley() {
-	const infoObj = { header: 'RH', agent: 'kingsley' }
+	const infoObj = { identifier: 'ReservationHandler', agent: 'kingsley' }
 	infoObj.orderId = document.querySelectorAll('.STYLE43')[3].nextSibling.textContent.trim()
 	const guestNames = document.querySelectorAll('.square42')[1].innerText.trim()
 	if (guestNames.includes('、')) {
@@ -97,7 +97,7 @@ function Kingsley() {
 }
 
 function Meituan() {
-	const infoObj = { header: 'RH', agent: 'meituan' }
+	const infoObj = { identifier: 'ReservationHandler', agent: 'meituan' }
 	const infoItems = document.querySelectorAll('.detail-info-item')
 	infoObj.orderId = infoItems[0].children[1].innerText.split(' ')[0]
 	guestNames = infoItems[3].innerText.split('\n')[1]
@@ -140,7 +140,7 @@ function Meituan() {
 }
 
 function Ctrip() {
-	const infoObj = { header: 'RH', agent: 'ctrip' }
+	const infoObj = { identifier: 'ReservationHandler', agent: 'ctrip' }
 	infoObj.orderId = parseInt(document.getElementById('lblOrderID').innerText)
 	const tableOrderList = document.querySelectorAll('.table-order-list span')
 	// console.log(tableOrderList);
@@ -169,7 +169,7 @@ function Ctrip() {
 }
 
 function Fliggy() {
-	const infoObj = { header: 'RH', agent: 'fliggy' }
+	const infoObj = { identifier: 'ReservationHandler', agent: 'fliggy' }
 	infoObj.orderId = Number(document.querySelector('.ant-space-item').innerText)
 	infoObj.guestNames = document.querySelector('.name___1TOpi').innerText.split(' ')
 
@@ -194,11 +194,7 @@ function Fliggy() {
 	const bbf = Array.from(document.querySelectorAll('.tableCellLabel___2hgxe')).map((item) => item.nextElementSibling.innerText)
 	infoObj.bbf = bbf.map((item) => (item === '无早' ? 0 : item === '含单早' ? 1 : 2))
 
-	const invoiceRemarks = Array.from(document.querySelectorAll('.ant-descriptions-item-content span')).at(-2).innerText
-	console.log(invoiceRemarks)
-	const issueByHotel = invoiceRemarks.includes('由酒店开具') ? true : false
-	const issueAmount = Number(invoiceRemarks.split(' ')[1])
-	infoObj.invoiceDetails = { issueByHotel, issueAmount }
+	infoObj.invoiceMemo = Array.from(document.querySelectorAll('.ant-descriptions-item-content span')).at(-2).innerText
 
 	const paymentType = Array.from(document.querySelectorAll('.ant-descriptions-item-content span')).at(-1).innerText
 	infoObj.paymentType = paymentType.includes('信用住') ? '信用住' : '预付'
@@ -217,7 +213,7 @@ function emailBookings() {
 }
 
 function AgodaMail() {
-	const infoObj = { header: 'RH', agent: 'agoda' }
+	const infoObj = { identifier: 'ReservationHandler', agent: 'agoda' }
 	infoObj.orderId = document.getElementById('ltrBookingIDValue').innerText
 	infoObj.guestLastName = document.getElementById('ltrCustomerLastNameValue').innerText
 	infoObj.guestFirstName = document.getElementById('ltrCustomerFirstNameValue').innerText
