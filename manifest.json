@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
 	"name": "Reservation Handler",
-	"version": "1.0.4",
+	"version": "1.0.5",
 
-	"description": "从OTA Ebooking、邮件网页内容提取订单信息。",
+	"description": "一键获取订单信息，令您的预订处理自动化更加轻松。",
 	"icons": {
 		"48": "icons/RH-48.png"
 	},
