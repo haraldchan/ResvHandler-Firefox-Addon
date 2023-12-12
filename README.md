@@ -87,7 +87,7 @@ Reservation Handler 目前支持以下酒店代理商：
 在部分代理商的 JSON 中包含特有字段：
 
 * **携程**
-```javascript
+```yaml
 {
   "payment":"现付" 
   // 区分支付方式。一般为"现付"或"预付"。
