@@ -53,7 +53,7 @@ Reservation Handler 目前支持以下酒店代理商：
 
 插件生成的 JSON 数据包含以下字段：
 
-```javascript
+```json
 {
   "identifier": "ReservationHandler",
   "agent": "fliggy",
@@ -87,14 +87,14 @@ Reservation Handler 目前支持以下酒店代理商：
 在部分代理商的 JSON 中包含特有字段：
 
 * **携程**
-```yaml
+```json
 {
   "payment":"现付" 
   // 区分支付方式。一般为"现付"或"预付"。
 }
 ```
 * **飞猪**
-```javascript
+```json
 {
   "payment":"信用住", 
   // 区分支付方式。一般为"信用住"或"预付"。
@@ -103,7 +103,7 @@ Reservation Handler 目前支持以下酒店代理商：
 }
 ```
 * **Agoda**
-```javascript
+```json
 {
   "contacts":{
     "phone":13300003333,
@@ -117,7 +117,7 @@ Reservation Handler 目前支持以下酒店代理商：
 
 由于FedEx 的订单和一般 OTA 代理商的内容有较大差别，单独列明说明：
 
-```javascript
+```json
 {
   "identifier":"ReservationHandler",
   "agent":"fedex",
