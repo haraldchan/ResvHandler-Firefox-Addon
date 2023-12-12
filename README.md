@@ -29,6 +29,7 @@ Reservation Handler 目前支持以下酒店代理商：
 
 * **Agoda 培量订单（Quantum）**
 * **FedEx Hotel Reservation邮件**
+
 请确保你的订单来自以上列出的代理商之一，以确保插件正常工作。
 
 ## 📄 获取订单信息
