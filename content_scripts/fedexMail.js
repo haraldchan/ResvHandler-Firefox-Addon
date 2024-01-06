@@ -22,7 +22,10 @@ function FedexMail() {
 	infoObj.roomRates = Array(infoObj.daysActual).fill(roomRatePerNight)
 
 	const crewInfo = document.querySelector('div .content')
-	infoObj.crewNames = getCrewNames(crewInfo.innerText.split('\n')[0])
+	const crewInfoCut = crewInfo.innerText.split('\n')[0] === "CREW SWAP" 
+		? crewInfo.innerText.split('\n')[1]
+		: crewInfo.innerText.split('\n')[0]
+	infoObj.crewNames = getCrewNames(crewInfoCut)
 	const tripNum = crewInfo.parentElement.nextElementSibling.textContent.split(' ')
 	infoObj.tripNum = `${tripNum[5]}/${tripNum[7]}`
 	infoObj.tracking = Array.from(document.querySelectorAll('p')).pop().innerText.split(' ').pop()

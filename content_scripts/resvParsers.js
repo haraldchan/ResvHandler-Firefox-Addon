@@ -205,10 +205,13 @@ function Fliggy() {
 function emailBookings() {
 	const fedexHeader = document.querySelector('h2')?.textContent.includes('FedEx') ? true : null
 	const agodaHeader = document.getElementById('imgAgodaLogo') ?? null
+	const webbedsHeader = document.body.innerText.includes('WebBeds FZ LLC') ?? null
 	if (fedexHeader) {
 		browser.runtime.sendMessage({ info: FedexMail() })
 	} else if (agodaHeader) {
 		browser.runtime.sendMessage({ info: AgodaMail() })
+	} else if (webbedsHeader) {
+		browser.runtime.sendMessage({ info: WebbedsMail() })
 	}
 }
 
@@ -240,6 +243,51 @@ function AgodaMail() {
 		phone: document.getElementById('lbl_CustomerInfoName_lblSub')?.innerText.split('电话: ')[1],
 		email: document.getElementById('lbl_CustomerEmailInfo')?.innerText,
 	}
+
+	return JSON.stringify(infoObj)
+}
+
+function WebbedsMail() {
+	const infoObj = { identifier: 'ReservationHandler', agent: 'webbeds' }
+	const voucherGeneralDetails = document.getElementsByName('voucherGeneralDetails')
+	infoObj.orderId = voucherGeneralDetails[0].querySelectorAll('td')[6].innerText
+
+	const passengerDetails = document.getElementById('passengerDetails').querySelectorAll('td')
+	infoObj.guestNames = [passengerDetails[1].innerText.split(',')[0].split('Sir/Madam')[1].trim()]
+	const monthMap = {
+		Jan: '01',
+		Feb: '02',
+		Mar: '03',
+		Apr: '04',
+		May: '05',
+		Jun: '06',
+		Jul: '07',
+		Aug: '08',
+		Sep: '09',
+		Oct: '10',
+		Nov: '11',
+		Dec: '12',
+	}
+	const ciDate = passengerDetails[13].innerText.split(', ')[1].split(' ')
+	infoObj.ciDate = ciDate[2] + monthMap[ciDate[1]] + ciDate[0]
+	const coDate = passengerDetails[15].innerText.split(', ')[1].split(' ')
+	infoObj.coDate = coDate[2] + monthMap[coDate[1]] + coDate[0]
+	infoObj.roomType = passengerDetails[17].innerText
+	const breakfastQty = passengerDetails[23] === 'Room Only' ? 0 : Number(passengerDetails[19].innerText.charAt(0)) === 2 ? 2 : 1
+	infoObj.remarks = passengerDetails[27].innerText
+	
+	const voucherPanels = document.getElementsByName('voucherPanel')
+	infoObj.creditCardNumbers = Array.from(voucherPanels).map((voucherPanel) => voucherPanel.querySelectorAll('td')[60].innerText)
+	infoObj.creditCardExp = Array.from(voucherPanels).map((voucherPanel) => voucherPanel.querySelectorAll('td')[62].innerText)
+	infoObj.roomQty = infoObj.creditCardNumbers.length
+	
+	const rateInfoNodes = Array.from(document.querySelectorAll('table')[17].querySelectorAll('tr')).slice(2, -1)
+	infoObj.roomRates = rateInfoNodes
+		.filter((item, index) => index % 2 === 0)
+		.map((tr) => parseFloat(tr.querySelectorAll('td')[1].innerText.split(' ')[1].replace(',', '')))
+	infoObj.bbf = Array(infoObj.roomRates.length).fill(breakfastQty)
+
+
 
 	return JSON.stringify(infoObj)
 }
