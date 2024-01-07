@@ -249,8 +249,6 @@ function AgodaMail() {
 
 function WebbedsMail() {
 	const infoObj = { identifier: 'ReservationHandler', agent: 'webbeds' }
-	// const voucherGeneralDetails = document.getElementsByName('voucherGeneralDetails')
-	// infoObj.orderId = voucherGeneralDetails[0].querySelectorAll('td')[6].innerText
 	infoObj.orderId = getNextFieldsInnerText('td', 'Itinerary Number')
 	const guestNames = getNextFieldsInnerText('td', 'Passenger Name').split('Sir/Madam')[1].split(',')[0].trim()
 	infoObj.guestNames = [guestNames]
