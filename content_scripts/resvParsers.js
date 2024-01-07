@@ -269,7 +269,7 @@ function WebbedsMail() {
 	}
 	const ciDate = getNextFieldsInnerText('td', 'Check-in').split(', ')[1].split(' ')
 	infoObj.ciDate = ciDate[2] + monthMap[ciDate[1]] + ciDate[0]
-	const coDate = getNextFieldsInnerText('td', 'Check-in').split(', ')[1].split(' ')
+	const coDate = getNextFieldsInnerText('td', 'Check-out').split(', ')[1].split(' ')
 	infoObj.coDate = coDate[2] + monthMap[coDate[1]] + coDate[0]
 
 	infoObj.roomType = getNextFieldsInnerText('td', 'Room Type')
