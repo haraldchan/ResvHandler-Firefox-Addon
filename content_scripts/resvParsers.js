@@ -249,11 +249,12 @@ function AgodaMail() {
 
 function WebbedsMail() {
 	const infoObj = { identifier: 'ReservationHandler', agent: 'webbeds' }
-	const voucherGeneralDetails = document.getElementsByName('voucherGeneralDetails')
-	infoObj.orderId = voucherGeneralDetails[0].querySelectorAll('td')[6].innerText
+	// const voucherGeneralDetails = document.getElementsByName('voucherGeneralDetails')
+	// infoObj.orderId = voucherGeneralDetails[0].querySelectorAll('td')[6].innerText
+	infoObj.orderId = getNextFieldsInnerText('td', 'Itinerary Number')
+	const guestNames = getNextFieldsInnerText('td', 'Passenger Name').split('Sir/Madam')[1].split(',')[0].trim()
+	infoObj.guestNames = [guestNames]
 
-	const passengerDetails = document.getElementById('passengerDetails').querySelectorAll('td')
-	infoObj.guestNames = [passengerDetails[1].innerText.split(',')[0].split('Sir/Madam')[1].trim()]
 	const monthMap = {
 		Jan: '01',
 		Feb: '02',
@@ -268,26 +269,27 @@ function WebbedsMail() {
 		Nov: '11',
 		Dec: '12',
 	}
-	const ciDate = passengerDetails[13].innerText.split(', ')[1].split(' ')
+	const ciDate = getNextFieldsInnerText('td', 'Check-in').split(', ')[1].split(' ')
 	infoObj.ciDate = ciDate[2] + monthMap[ciDate[1]] + ciDate[0]
-	const coDate = passengerDetails[15].innerText.split(', ')[1].split(' ')
+	const coDate = getNextFieldsInnerText('td', 'Check-in').split(', ')[1].split(' ')
 	infoObj.coDate = coDate[2] + monthMap[coDate[1]] + coDate[0]
-	infoObj.roomType = passengerDetails[17].innerText
-	const breakfastQty = passengerDetails[23] === 'Room Only' ? 0 : Number(passengerDetails[19].innerText.charAt(0)) === 2 ? 2 : 1
-	infoObj.remarks = passengerDetails[27].innerText
-	
-	const voucherPanels = document.getElementsByName('voucherPanel')
-	infoObj.creditCardNumbers = Array.from(voucherPanels).map((voucherPanel) => voucherPanel.querySelectorAll('td')[60].innerText)
-	infoObj.creditCardExp = Array.from(voucherPanels).map((voucherPanel) => voucherPanel.querySelectorAll('td')[62].innerText)
+
+	infoObj.roomType = getNextFieldsInnerText('td', 'Room Type')
+	const breakfastQty =
+		getNextFieldsInnerText('td', 'Rate Basis') === 'Room Only' ? 0 : getNextFieldsInnerText('td', 'Room Occupancy').charAt(0) === '2' ? 2 : 1
+
+	infoObj.remarks = getNextFieldsInnerText('td', 'Additional Requests')
+
+	const creditCardInfos = Array.from(document.querySelectorAll('td')).filter((td) => td.innerText === 'Card Number')
+	infoObj.creditCardNumbers = creditCardInfos.map((td) => td.parentElement.nextElementSibling.children[0].innerText)
+	infoObj.creditCardExp = creditCardInfos.map((td) => td.parentElement.nextElementSibling.children[2].innerText)
 	infoObj.roomQty = infoObj.creditCardNumbers.length
-	
-	const rateInfoNodes = Array.from(document.querySelectorAll('table')[17].querySelectorAll('tr')).slice(2, -1)
+
+	const rateInfoNodes = Array.from(document.querySelectorAll('td')).filter((td) => td.innerText === 'CNY 0.00')
 	infoObj.roomRates = rateInfoNodes
-		.filter((item, index) => index % 2 === 0)
-		.map((tr) => parseFloat(tr.querySelectorAll('td')[1].innerText.split(' ')[1].replace(',', '')))
+		.map((element) => Number(element.previousElementSibling.innerText.replace('CNY ','').replace(',','')))
+		.splice(0, rateInfoNodes.length / infoObj.roomQty)
 	infoObj.bbf = Array(infoObj.roomRates.length).fill(breakfastQty)
-
-
 
 	return JSON.stringify(infoObj)
 }
@@ -309,4 +311,9 @@ function dateDiffInDays(date1, date2) {
 	const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24))
 
 	return daysDifference
+}
+
+function getNextFieldsInnerText(tag, searchInnerText) {
+	const arr = Array.from(document.querySelectorAll(tag))
+	return arr.filter((element) => element.innerText === searchInnerText)[0].nextElementSibling.innerText
 }
