@@ -249,8 +249,8 @@ function AgodaMail() {
 
 function WebbedsMail() {
 	const infoObj = { identifier: 'ReservationHandler', agent: 'webbeds' }
-	infoObj.orderId = getNextFieldsInnerText('td', 'Itinerary Number')
-	const guestNames = getNextFieldsInnerText('td', 'Passenger Name').split('Sir/Madam')[1].split(',')[0].trim()
+	infoObj.orderId = getNextFieldInnerText('td', 'Itinerary Number')
+	const guestNames = getNextFieldInnerText('td', 'Passenger Name').split('Sir/Madam')[1].split(',')[0].trim()
 	infoObj.guestNames = [guestNames]
 
 	const monthMap = {
@@ -267,16 +267,16 @@ function WebbedsMail() {
 		Nov: '11',
 		Dec: '12',
 	}
-	const ciDate = getNextFieldsInnerText('td', 'Check-in').split(', ')[1].split(' ')
+	const ciDate = getNextFieldInnerText('td', 'Check-in').split(', ')[1].split(' ')
 	infoObj.ciDate = ciDate[2] + monthMap[ciDate[1]] + ciDate[0]
-	const coDate = getNextFieldsInnerText('td', 'Check-out').split(', ')[1].split(' ')
+	const coDate = getNextFieldInnerText('td', 'Check-out').split(', ')[1].split(' ')
 	infoObj.coDate = coDate[2] + monthMap[coDate[1]] + coDate[0]
 
-	infoObj.roomType = getNextFieldsInnerText('td', 'Room Type')
+	infoObj.roomType = getNextFieldInnerText('td', 'Room Type')
 	const breakfastQty =
-		getNextFieldsInnerText('td', 'Rate Basis') === 'Room Only' ? 0 : getNextFieldsInnerText('td', 'Room Occupancy').charAt(0) === '2' ? 2 : 1
+		getNextFieldInnerText('td', 'Rate Basis') === 'Room Only' ? 0 : getNextFieldInnerText('td', 'Room Occupancy').charAt(0) === '2' ? 2 : 1
 
-	infoObj.remarks = getNextFieldsInnerText('td', 'Additional Requests')
+	infoObj.remarks = getNextFieldInnerText('td', 'Additional Requests')
 
 	const creditCardInfos = Array.from(document.querySelectorAll('td')).filter((td) => td.innerText === 'Card Number')
 	infoObj.creditCardNumbers = creditCardInfos.map((td) => td.parentElement.nextElementSibling.children[0].innerText)
@@ -311,7 +311,12 @@ function dateDiffInDays(date1, date2) {
 	return daysDifference
 }
 
-function getNextFieldsInnerText(tag, searchInnerText) {
-	const arr = Array.from(document.querySelectorAll(tag))
-	return arr.filter((element) => element.innerText === searchInnerText)[0].nextElementSibling.innerText
+function getNextFieldInnerText(tag, searchInnerText, index = 0) {
+	const tags = Array.from(document.querySelectorAll(tag))
+	if (index !== '*'){
+		return tags.filter((element) => element.innerText === searchInnerText)[index].nextElementSibling.innerText
+	} else {
+		const nodeArray = tags.filter((element) => element.innerText === searchInnerText)
+		return nodeArray.map(element => element.nextElementSibling.innerText)
+	}
 }
