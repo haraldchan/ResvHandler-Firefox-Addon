@@ -5,11 +5,10 @@ const agentSources = [
 	{ agentName: 'meituan', domain: 'eb.meituan.com' },
 	{ agentName: 'fliggy', domain: 'hotel.fliggy.com' },
 	// { agentName: '微信商城', domain: 'ebooking.jladmin.cn' },
-	{ agentName: 'email', domain: 'mail.qiye.163.com' },
+	{ agentName: '163email', domain: 'mail.qiye.163.com' },
 ]
 
 browser.runtime.onMessage.addListener((req, sender, sendResponse) => {
-	// console.log(req.msg)
 	const url = req.url
 	let curAgent = ''
 	for (const agent of agentSources) {
@@ -33,7 +32,7 @@ browser.runtime.onMessage.addListener((req, sender, sendResponse) => {
 		case 'fliggy':
 			browser.runtime.sendMessage({ info: Fliggy() })
 			break
-		case 'email':
+		case '163email':
 			emailBookings()
 			break
 	}
