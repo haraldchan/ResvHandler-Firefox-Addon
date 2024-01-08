@@ -127,8 +127,10 @@ Reservation Handler 目前支持以下酒店代理商：
 ```json
 {
 	"creditCardNumbers": ["5554XXXXXXXX2960", "5554XXXXXXXX1582", "5554XXXXXXXX0326"],
-	"creditCardExp": ["MM/YY", "MM/YY", "MM/YY"]
+	"creditCardExp": ["MM/YY", "MM/YY", "MM/YY"],
 	// 收款虚拟卡号信息。
+	"orderId": ["HTL-WBD-1111111112", "HTL-WBD-222222222"]
+	// WebBeds邮件的 OrderId 返回值为数组
 }
 ```
 
