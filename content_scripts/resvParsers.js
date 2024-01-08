@@ -203,14 +203,14 @@ function Fliggy() {
 }
 
 function emailBookings() {
-	const fedexHeader = document.querySelector('h2')?.textContent.includes('FedEx') ? true : null
-	const agodaHeader = document.getElementById('imgAgodaLogo') ?? null
-	const webbedsHeader = document.body.innerText.includes('WebBeds FZ LLC') ?? null
-	if (fedexHeader) {
+	const isFedex = document.querySelector('h2')?.textContent.includes('FedEx') ?? null
+	const isAgoda = document.getElementById('imgAgodaLogo') ?? null
+	const isWebbeds = document.body.innerText.includes('WebBeds FZ LLC') ?? null
+	if (isFedex) {
 		browser.runtime.sendMessage({ info: FedexMail() })
-	} else if (agodaHeader) {
+	} else if (isAgoda) {
 		browser.runtime.sendMessage({ info: AgodaMail() })
-	} else if (webbedsHeader) {
+	} else if (isWebbeds) {
 		browser.runtime.sendMessage({ info: WebbedsMail() })
 	}
 }
