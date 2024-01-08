@@ -61,13 +61,7 @@ function Kingsley() {
 	} else {
 		infoObj.guestNames = [guestNames]
 	}
-	const roomTypeText = document.querySelectorAll('.square426')[1].innerText
-	if (roomTypeText.includes('(')) {
-		infoObj.roomType = roomTypeText.split('(')[0].trim()
-	} else if (roomTypeText.includes('（')) {
-		infoObj.roomType = roomTypeText.split('（')[0].trim()
-	}
-	// infoObj.roomType = document.querySelectorAll('.square426')[1].innerText.split('(')[0].trim()
+	infoObj.roomType = Array.from(document.querySelectorAll('div')).filter(div => div.innerText === '房间种类：')[0].parentElement.nextElementSibling.innerText.trim()
 	const orderIdText = document.querySelectorAll('.square426')[1].innerText
 	const bbfCount = orderIdText.includes('不含早') ? 0 : orderIdText.includes('单早') ? 1 : 2
 
