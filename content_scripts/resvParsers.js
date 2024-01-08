@@ -249,7 +249,7 @@ function AgodaMail() {
 
 function WebbedsMail() {
 	const infoObj = { identifier: 'ReservationHandler', agent: 'webbeds' }
-	infoObj.orderId = getNextFieldInnerText('td', 'Itinerary Number')
+	infoObj.orderId = getNextFieldInnerText('td', 'Booking Reference No', '*')
 	const guestNames = getNextFieldInnerText('td', 'Passenger Name').split('Sir/Madam')[1].split(',')[0].trim()
 	infoObj.guestNames = [guestNames]
 
