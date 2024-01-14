@@ -113,10 +113,12 @@ function getCrewNames(crewInfo) {
 	if (crewInfo.includes(',')){
 		const crewMembers = crewInfo.split(',')
 		return [
-			crewMembers[0].split('(')[0].split('-')[1].trim(),
-			crewMembers[1].split('(')[0].split('-')[1].trim()
+			crewMembers[0].includes('-') ? crewMembers[0].split('(')[0].split('-')[1].trim() : crewMembers[0].split('(')[0].trim(),
+			crewMembers[1].includes('-') ? crewMembers[1].split('(')[0].split('-')[1].trim() : crewMembers[0].split('(')[1].trim()
 		]
 	} else {
-		return [crewInfo.split('(')[0].split('-')[1].trim()]
+		return [
+			crewInfo.includes('-') ? crewInfo.split('(')[0].split('-')[1].trim() : crewInfo.split('(')[0].trim()
+		]
 	}
 }
