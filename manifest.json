@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Reservation Handler",
-	"version": "1.0.10",
+	"version": "1.0.11",
 
 	"description": "一键获取订单信息，令您的预订处理自动化更加轻松。",
 	"icons": {
