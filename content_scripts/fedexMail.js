@@ -1,5 +1,5 @@
 function FedexMail() {
-	const infoObj = { identifier: 'ReservationHandler', agent: 'fedex' }
+	const infoObj = { identifier: '031709eafc20ab898d6b9e9860d31966', agent: 'fedex' }
 	const resvTypeText = document.querySelectorAll('h2')[1].childNodes[4].textContent.trim()
 	infoObj.resvType = resvTypeText.includes('ADD') ? 'ADD' : 'CHANGE'
 	const flightInfoTable = document.querySelectorAll('div tbody')[2].children

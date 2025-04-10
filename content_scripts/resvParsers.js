@@ -12,7 +12,7 @@ const infoObjFormat = [
 ]
 // query models
 function Jielv() {
-	const infoObj = { identifier: 'ReservationHandler', agent: 'jielv' }
+	const infoObj = { identifier: '031709eafc20ab898d6b9e9860d31966', agent: 'jielv' }
 	const tdclass = document.querySelectorAll('.tdclass')
 	infoObj.orderId = tdclass[0].nextElementSibling.innerText
 	infoObj.roomType = tdclass[4].nextElementSibling.innerText.split(' ')[0]
@@ -49,7 +49,7 @@ function Jielv() {
 }
 
 function Kingsley() {
-	const infoObj = { identifier: 'ReservationHandler', agent: 'kingsley' }
+	const infoObj = { identifier: '031709eafc20ab898d6b9e9860d31966', agent: 'kingsley' }
 	infoObj.orderId = document.querySelectorAll('.STYLE43')[3].nextSibling.textContent.trim()
 	const guestNames = document.querySelectorAll('.square42')[1].innerText.trim()
 	if (guestNames.includes('、')) {
@@ -99,7 +99,7 @@ function Kingsley() {
 }
 
 function Meituan() {
-	const infoObj = { identifier: 'ReservationHandler', agent: 'meituan' }
+	const infoObj = { identifier: '031709eafc20ab898d6b9e9860d31966', agent: 'meituan' }
 	const infoItems = document.querySelectorAll('.detail-info-item')
 	infoObj.orderId = infoItems[0].children[1].innerText.split(' ')[0]
 	guestNames = infoItems[3].innerText.split('\n')[1]
@@ -142,7 +142,7 @@ function Meituan() {
 }
 
 function Ctrip() {
-	const infoObj = { identifier: 'ReservationHandler', agent: 'ctrip' }
+	const infoObj = { identifier: '031709eafc20ab898d6b9e9860d31966', agent: 'ctrip' }
 	infoObj.orderId = parseInt(document.getElementById('lblOrderID').innerText)
 	const tableOrderList = document.querySelectorAll('.table-order-list span')
 	// console.log(tableOrderList);
@@ -171,7 +171,7 @@ function Ctrip() {
 }
 
 function Fliggy() {
-	const infoObj = { identifier: 'ReservationHandler', agent: 'fliggy' }
+	const infoObj = { identifier: '031709eafc20ab898d6b9e9860d31966', agent: 'fliggy' }
 	infoObj.orderId = Number(document.querySelector('.ant-space-item').innerText)
 	infoObj.guestNames = document.querySelector('.name___1TOpi').innerText.split(' ')
 
@@ -218,7 +218,7 @@ function emailBookings() {
 }
 
 function AgodaMail() {
-	const infoObj = { identifier: 'ReservationHandler', agent: 'agoda' }
+	const infoObj = { identifier: '031709eafc20ab898d6b9e9860d31966', agent: 'agoda' }
 	infoObj.orderId = document.getElementById('ltrBookingIDValue').innerText
 	infoObj.guestLastName = document.getElementById('ltrCustomerLastNameValue').innerText
 	infoObj.guestFirstName = document.getElementById('ltrCustomerFirstNameValue').innerText
@@ -250,7 +250,7 @@ function AgodaMail() {
 }
 
 function WebbedsMail() {
-	const infoObj = { identifier: 'ReservationHandler', agent: 'webbeds' }
+	const infoObj = { identifier: '031709eafc20ab898d6b9e9860d31966', agent: 'webbeds' }
 	infoObj.orderId = getNextFieldInnerText('td', 'Booking Reference No', '*')
 	const guestNames = getNextFieldInnerText('td', 'Passenger Name').split('Sir/Madam')[1].split(',')[0].trim()
 	infoObj.guestNames = [guestNames]
